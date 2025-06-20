@@ -1,0 +1,23 @@
+name: Validate Docker Image
+
+on:
+    pull_request:
+        branches:
+            - main
+        paths:
+            - 'Dockerfile'
+        types: [opened, synchronize, reopened]
+
+jobs:
+    validate_image:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out the repository
+              uses: actions/checkout@v4
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+            - name: Build and validate Docker image
+            # build image, run some test script in the image to make sure it works
+              run: |
+                docker build --load . || exit 1
+                docker run --rm --gpus all twoslashes/starpu-cudaq:latest /bin/bash -c "echo 'image running'"
