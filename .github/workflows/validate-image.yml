@@ -21,4 +21,4 @@ jobs:
             # build image, run some test script in the image to make sure it works
               run: |
                 docker build --load . || exit 1
-                docker run --rm --gpus all twoslashes/starpu-cudaq:latest /bin/bash -c "echo 'image running'"
+                docker run --rm twoslashes/starpu-cudaq:latest /bin/bash -c "echo 'image running'"
