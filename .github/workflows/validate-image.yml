@@ -20,5 +20,5 @@ jobs:
             - name: Build and validate Docker image
             # build image, run some test script in the image to make sure it works
               run: |
-                docker build --quiet --load . || exit 1
+                docker build --load . || exit 1
                 docker run --rm twoslashes/starpu-cudaq:latest -c '. /root/usr/starpu/bin/starpu_env && python3 -c "import cudaq; import starpu; print(\"imports successful\")"'
