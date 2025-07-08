@@ -23,4 +23,4 @@ jobs:
                 docker build --quiet --load . || exit 1
             - name: Validate Docker image
               run: |
-                docker run --rm twoslashes/starpu-cudaq:latest -c './root/usr/starpu/bin/starpu_env && python3 -c "import cudaq; import starpu; print(\"imports successful\")"'
+                docker run --rm twoslashes/starpu-cudaq:latest -c '. /root/usr/starpu/bin/starpu_env && python3 -c "import cudaq; import starpu; print(\"imports successful\")"'
